@@ -1,2 +1,2 @@
 # CURRENCY CONVERTOR
-A GUI app which converts currencies
+A python program which converts currencies
