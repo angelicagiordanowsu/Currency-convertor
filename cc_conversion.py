@@ -5,7 +5,7 @@ f, t, a = input("Enter the starting currency (XXX) and the final currency you wa
 
 class curr_main:
   def __init__(self):
-    self.apikey = "e00d40017f8b8832f6c7"
+    self.apikey = "no you shouldn't be seeing this"
     self.baseurl = "https://free.currconv.com/api/v7/"
 
   def countries(self): #to return list of countries
