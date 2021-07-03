@@ -1,2 +1,2 @@
 # CURRENCY CONVERTOR
-A GUI app which will convert currencies
+A GUI app which converts currencies
