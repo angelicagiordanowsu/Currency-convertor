@@ -73,9 +73,6 @@ tk.Button(app, text= (' ' + 'SEND' + ' '), font = ('Calibri', 12), command=lambd
 app.bind('<Return>', (lab_one, lab_two, lab_three))
       
 
-if __name__ == "__main__":
-  app.mainloop()
-
 class curr_main:
 
   def __init__(self):
@@ -114,4 +111,6 @@ final_amount = curr_instance.convert(curr_cod)
 
 print(round(final_amount * float(a), 3))
 
+if __name__ == "__main__":
+  app.mainloop()
 
