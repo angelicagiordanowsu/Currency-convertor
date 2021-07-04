@@ -29,7 +29,6 @@ E2 = tk.OptionMenu(app, var, *OptionList)
 E2.config(width=90, font=('Calibri', 12, "bold"))
 E2.place(x = 200, y = 300)
     
-
 E3 = tk.OptionMenu(app, text, *OptionList)
 E3.config(width=90, font=('Calibri', 12, "bold"))
 E3.place(x = 200, y = 350)
@@ -49,7 +48,6 @@ def lab_one(event= None):
 
 def clear_text_three(self):
     E3.delete(0, 'end')
-
 
 def lab_two(event= None):
     bbb = text.get()
