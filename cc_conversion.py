@@ -72,6 +72,8 @@ a = (E4.get())
 tk.Button(app, text= (' ' + 'SEND' + ' '), font = ('Calibri', 12), command=lambda:[lab_one(), lab_two(), lab_three()]).place(x = 937, y = 410, anchor= "center")
 app.bind('<Return>', (lab_one, lab_two, lab_three))
       
+if __name__ == "__main__":
+    app.mainloop()
 
 class curr_main:
 
@@ -111,6 +113,5 @@ final_amount = curr_instance.convert(curr_cod)
 
 print(round(final_amount * float(a), 3))
 
-if __name__ == "__main__":
-  app.mainloop()
+
 
