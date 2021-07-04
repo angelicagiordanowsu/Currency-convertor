@@ -82,9 +82,6 @@ a = E4.get()
 tk.Button(app, text= (' ' + 'Press me to send' + ' '), font = ('Libre Baskerville', 12), command=lambda:[lab_one(), lab_two(), lab_three()]).place(x= 500, y= 500, anchor= 'CENTER')
 app.bind('<Return>', (lab_one, lab_two, lab_three))
       
-printing = []
-print(printing)
-
 if __name__ == "__main__":
   app.mainloop()
 
