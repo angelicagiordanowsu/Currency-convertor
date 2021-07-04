@@ -1,5 +1,7 @@
 #docs: https://www.currencyconverterapi.com/docs 
+from tkinter.constants import CENTER
 import requests
+import keyboard
 import tkinter as tk
 
 OptionList = [
@@ -16,58 +18,46 @@ app.config(bg = "black")
 
 label_one = tk.Label(text = "CURRENCY CONVERTER", bg = "black", fg = "white")
 label_one.config(font = ("Calibri", 15))
-label_one.pack(pady = 10)
+label_one.place(x= 200, y = 250, anchor= "center")
 
 var = tk.StringVar(app)
-var.set("CLICK ME TO SEE THE CURRENCIES")
+var.set("FROM")
 
-opt = tk.OptionMenu(app, var, *OptionList)
-opt.config(width=90, font=('Calibri', 15, "bold"))
-opt.pack()
+text = tk.StringVar(app)
+text.set("TO") 
 
-L2 = tk.Label(app, text = "Enter the starting currency (XXX)", bg = "black", fg = "white", font= ('Calibri', 14))
-L2.place(x = 0, y = 250)
-E2 = tk.Entry(app, bd = 5)
-E2.place(x = 500, y = 250)
+E2 = tk.OptionMenu(app, var, *OptionList)
+E2.config(width=90, font=('Calibri', 12, "bold"))
+E2.place(x = 200, y = 300)
     
-L3 = tk.Label(app, text = "Enter the currency you want to convert your amount in (YYY)", bg = "black", fg = "white", font= ('Calibri', 14))
-L3.place(x = 0, y = 310)
-E3 = tk.Entry(app, bd = 5)
-E3.place(x = 500, y = 310)
 
-L4 = tk.Label(app, text = "Enter the amount you want to convert", bg = "black", fg = "white", font= ('Calibri', 14))
-L4.place(x = 0, y = 370)
+E3 = tk.OptionMenu(app, text, *OptionList)
+E3.config(width=90, font=('Calibri', 12, "bold"))
+E3.place(x = 200, y = 350)
+
+L4 = tk.Label(app, text = "AMOUNT:", bg = "black", fg = "white", font= ('Calibri', 14))
+L4.place(x = 100, y = 400)
 E4 = tk.Entry(app, bd = 5)
-E4.place(x = 500, y = 370)
-
-
-f = E2.get()
-t = E3.get()
-
-# C U R R E N C Y . 1
+E4.place(x = 200, y = 400)
 
 def clear_text_two(self):
     E2.delete(0, 'end')
-    
+
+aaa = var.get()
+aaa_out = aaa[-3:]  
 def lab_one(event= None):
-    E2G = E2.get()
-    label = E2G.title()
-    clear_text_two(label)
-    print(E2G)
-    
-# C U R R E N C Y . 2 
+    print(aaa_out)
+f = aaa_out    
 
 def clear_text_three(self):
     E3.delete(0, 'end')
-    
+
+bbb = text.get()
+bbb_out = bbb[-3:]
 def lab_two(event= None):
-    E3G = E3.get()
-    label = E3G.title()
-    clear_text_three(label)
-    print(E3G)
- 
-# A M O U N T
-    
+    print(bbb_out)
+t = bbb_out
+
 def clear_text_four(self):
     E4.delete(0, 'end')
 
@@ -77,51 +67,51 @@ def lab_three(event= None):
     clear_text_four(label)
     print(E4G)
 
-a = E4.get()   
+a = (E4.get())
 
-tk.Button(app, text= (' ' + 'Press me to send' + ' '), font = ('Libre Baskerville', 12), command=lambda:[lab_one(), lab_two(), lab_three()]).place(x= 500, y= 500, anchor= 'CENTER')
+tk.Button(app, text= (' ' + 'SEND' + ' '), font = ('Calibri', 12), command=lambda:[lab_one(), lab_two(), lab_three()]).place(x = 937, y = 410, anchor= "center")
 app.bind('<Return>', (lab_one, lab_two, lab_three))
       
+
 if __name__ == "__main__":
   app.mainloop()
 
-# class curr_main:
-  
-#   def __init__(self):
-#     self.apikey = "e00d40017f8b8832f6c7" 
-#     self.baseurl = "https://free.currconv.com/api/v7/"
+class curr_main:
 
-#   def countries(self): #to return list of countries
-#     req = requests.get(self.baseurl + "countries?apiKey=" + self.apikey)
-#     return req.json()
+  def __init__(self):
+    self.apikey = "e00d40017f8b8832f6c7" 
+    self.baseurl = "https://free.currconv.com/api/v7/"
 
-#   def currencies(self): #to return currencies
-#     req = requests.get(self.baseurl + "currencies?apiKey=" + self.apikey)
-#     return req.json()
+  def countries(self): #to return list of countries
+    req = requests.get(self.baseurl + "countries?apiKey=" + self.apikey)
+    return req.json()
 
-#   def generate_curr_code(self, f, t):
-#     curr_code = f + "_" + t 
-#     return curr_code
+  def currencies(self): #to return currencies
+    req = requests.get(self.baseurl + "currencies?apiKey=" + self.apikey)
+    return req.json()
 
-#   def convert(self, curr_code):
-#     parameter = {
-#       "apiKey":self.apikey,
-#       "compact":"ultra",
-#       "q":curr_code
-#     }
-#     req = requests.get(self.baseurl + "convert", params = parameter)
-#     if not req.status_code == 200:
-#       raise AssertionError
-#     if req.json() == {}:
-#       print('No data found for the conversion, probably a wrong currency code, :/')
-#     return req.json()[curr_code]
+  def generate_curr_code(self, f, t):
+    curr_code = f + "_" + t 
+    return curr_code
+
+  def convert(self, curr_code):
+    parameter = {
+      "apiKey":self.apikey,
+      "compact":"ultra",
+      "q":curr_code
+    }
+    req = requests.get(self.baseurl + "convert", params = parameter)
+    if not req.status_code == 200:
+      raise AssertionError
+    if req.json() == {}:
+      print('No data found for the conversion, probably a wrong currency code, :/')
+    return req.json()[curr_code]
 
 
-# curr_instance = curr_main()
-# curr_cod = curr_instance.generate_curr_code(f,t)
-# final_amount = curr_instance.convert(curr_cod)
+curr_instance = curr_main()
+curr_cod = curr_instance.generate_curr_code(f, t)
+final_amount = curr_instance.convert(curr_cod)
 
-# print(round(final_amount * float(a), 3))
-
+print(round(final_amount * float(a), 3))
 
 
