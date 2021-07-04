@@ -12,7 +12,7 @@ OptionList = [
 app = tk.Tk()
 app.title('Currency Converter')
 app.geometry('1000x1000')
-app.resize = False
+app.resizable(False, False)
 app.config(bg = "black")
 
 label_one = tk.Label(text = "CURRENCY CONVERTER", bg = "black", fg = "white")
