@@ -1,5 +1,4 @@
 #docs: https://www.currencyconverterapi.com/docs 
-from tkinter.constants import CENTER
 import requests
 import keyboard
 import tkinter as tk
