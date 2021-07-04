@@ -1,8 +1,5 @@
 #docs: https://www.currencyconverterapi.com/docs 
-from tkinter.constants import CENTER
 import requests
-import keyboard
-import sys
 import tkinter as tk
 
 OptionList = [
@@ -18,7 +15,7 @@ app.resize = False
 app.config(bg = "black")
 
 label_one = tk.Label(text = "CURRENCY CONVERTER", bg = "black", fg = "white")
-label_one.config(font =('Calibri', 15))
+label_one.config(font = ("Calibri", 15))
 label_one.pack(pady = 10)
 
 var = tk.StringVar(app)
@@ -43,6 +40,10 @@ L4.place(x = 0, y = 370)
 E4 = tk.Entry(app, bd = 5)
 E4.place(x = 500, y = 370)
 
+
+f = E2.get()
+t = E3.get()
+
 def clear_text_two(self):
     E2.delete(0, 'end')
     
@@ -51,7 +52,8 @@ def lab_one(event= None):
     label = E2G.title()
     clear_text_two(label)
     print(E2G)
-    
+
+  
 
 def clear_text_three(self):
     E3.delete(0, 'end')
@@ -62,71 +64,64 @@ def lab_two(event= None):
     clear_text_three(label)
     print(E3G)
     
-    
+
 def clear_text_four(self):
     E4.delete(0, 'end')
-    
+
 def lab_three(event= None):
     E4G = E4.get()
     label = E4G.title()
     clear_text_four(label)
     print(E4G)
 
+a = E4.get()   
 
-tk.Button(app, text= (' ' + 'Press me to send' + ' '), font = ('Libre Baskerville', 12), command=lambda:[lab_one(), lab_two(), lab_three()]).place(x= 500, y= 500, anchor= CENTER)
+tk.Button(app, text= (' ' + 'Press me to send' + ' '), font = ('Libre Baskerville', 12), command=lambda:[lab_one(), lab_two(), lab_three()]).place(x= 500, y= 500, anchor= 'CENTER')
 app.bind('<Return>', (lab_one, lab_two, lab_three))
-
-
+      
 printing = []
 print(printing)
 
+if __name__ == "__main__":
+  app.mainloop()
 
-app.mainloop()
-
-
-"""
-f, t, a = input("Enter the starting currency (XXX) and the final currency you want to convert your amount in (YYY) + the amount you want to convert, everything separated by a comma\n>> ").split(", ")
-f = E2.get()
-t = E3.get()
-a = E4.get()
-
-class curr_main:
+# class curr_main:
   
-  def __init__(self):
-    self.apikey = "e00d40017f8b8832f6c7" 
-    self.baseurl = "https://free.currconv.com/api/v7/"
+#   def __init__(self):
+#     self.apikey = "e00d40017f8b8832f6c7" 
+#     self.baseurl = "https://free.currconv.com/api/v7/"
 
-  def countries(self): #to return list of countries
-    req = requests.get(self.baseurl + "countries?apiKey=" + self.apikey)
-    return req.json()
+#   def countries(self): #to return list of countries
+#     req = requests.get(self.baseurl + "countries?apiKey=" + self.apikey)
+#     return req.json()
 
-  def currencies(self): #to return currencies
-    req = requests.get(self.baseurl + "currencies?apiKey=" + self.apikey)
-    return req.json()
+#   def currencies(self): #to return currencies
+#     req = requests.get(self.baseurl + "currencies?apiKey=" + self.apikey)
+#     return req.json()
 
-  def generate_curr_code(self, f, t):
-    curr_code = f + "_" + t 
-    return curr_code
+#   def generate_curr_code(self, f, t):
+#     curr_code = f + "_" + t 
+#     return curr_code
 
-  def convert(self, curr_code):
-    parameter = {
-      "apiKey":self.apikey,
-      "compact":"ultra",
-      "q":curr_code
-    }
-    req = requests.get(self.baseurl + "convert", params = parameter)
-    if not req.status_code == 200:
-      raise AssertionError
-    if req.json() == {}:
-      print('No data found for the conversion, probably a wrong currency code, :/')
-    return req.json()[curr_code]
-
-
-curr_instance = curr_main()
-curr_cod = curr_instance.generate_curr_code(f,t)
-final_amount = curr_instance.convert(curr_cod)
-print(round(final_amount * float(a), 3))
+#   def convert(self, curr_code):
+#     parameter = {
+#       "apiKey":self.apikey,
+#       "compact":"ultra",
+#       "q":curr_code
+#     }
+#     req = requests.get(self.baseurl + "convert", params = parameter)
+#     if not req.status_code == 200:
+#       raise AssertionError
+#     if req.json() == {}:
+#       print('No data found for the conversion, probably a wrong currency code, :/')
+#     return req.json()[curr_code]
 
 
-"""
+# curr_instance = curr_main()
+# curr_cod = curr_instance.generate_curr_code(f,t)
+# final_amount = curr_instance.convert(curr_cod)
+
+# print(round(final_amount * float(a), 3))
+
+
 
