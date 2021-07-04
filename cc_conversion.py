@@ -1,4 +1,5 @@
 #docs: https://www.currencyconverterapi.com/docs 
+from tkinter.constants import CENTER
 import requests
 import keyboard
 import sys
@@ -72,14 +73,8 @@ def lab_three(event= None):
     print(E4G)
 
 
-tk.Button(app, text= 'SEND THE INITIAL CURRENCY', command= lab_one).place(x= 300, y = 530)
-app.bind('<Return>', lab_one)
-
-tk.Button(app, text= 'SEND THE FINAL CURRENCY', command= lab_two).place(x= 300, y = 570)
-app.bind('<Return>', lab_two)
-
-tk.Button(app, text= 'SEND THE AMOUNT', command= lab_three).place(x= 300, y = 610)
-app.bind('<Return>', lab_three)
+tk.Button(app, text= (' ' + 'Press me to send' + ' '), font = ('Libre Baskerville', 12), command=lambda:[lab_one(), lab_two(), lab_three()]).place(x= 500, y= 500, anchor= CENTER)
+app.bind('<Return>', (lab_one, lab_two, lab_three))
 
 
 printing = []
