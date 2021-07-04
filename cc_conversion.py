@@ -23,7 +23,7 @@ var = tk.StringVar(app)
 var.set("FROM")
 
 text = tk.StringVar(app)
-text.set("TO") 
+text.set("TO")
 
 E2 = tk.OptionMenu(app, var, *OptionList)
 E2.config(width=90, font=('Calibri', 12, "bold"))
@@ -41,21 +41,20 @@ E4.place(x = 200, y = 400)
 
 def clear_text_two(self):
     E2.delete(0, 'end')
-
-aaa = var.get()
-aaa_out = aaa[-3:]  
+ 
 def lab_one(event= None):
+    aaa = var.get()
+    aaa_out = aaa[-3:] 
     print(aaa_out)
-f = aaa_out    
 
 def clear_text_three(self):
     E3.delete(0, 'end')
 
-bbb = text.get()
-bbb_out = bbb[-3:]
+
 def lab_two(event= None):
-    print(bbb_out)
-t = bbb_out
+    bbb = text.get()
+    bbb_out = bbb[-3:]
+    print(bbb_out)   
 
 def clear_text_four(self):
     E4.delete(0, 'end')
