@@ -44,6 +44,8 @@ E4.place(x = 500, y = 370)
 f = E2.get()
 t = E3.get()
 
+# C U R R E N C Y . 1
+
 def clear_text_two(self):
     E2.delete(0, 'end')
     
@@ -52,8 +54,8 @@ def lab_one(event= None):
     label = E2G.title()
     clear_text_two(label)
     print(E2G)
-
-  
+    
+# C U R R E N C Y . 2 
 
 def clear_text_three(self):
     E3.delete(0, 'end')
@@ -63,8 +65,9 @@ def lab_two(event= None):
     label = E3G.title()
     clear_text_three(label)
     print(E3G)
+ 
+# A M O U N T
     
-
 def clear_text_four(self):
     E4.delete(0, 'end')
 
