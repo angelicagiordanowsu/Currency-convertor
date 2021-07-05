@@ -48,7 +48,8 @@ def funct():
     f = aaa[-3:]
     bbb = text.get()
     t = bbb[-3:]
-    
+
+        
     curr_code = f + "_" + t
 
     def clear_text_four(self):
@@ -94,12 +95,11 @@ def funct():
             
     fff = round(final_amount * float(a), 3)
     
-    result = tk.Label(text = ("THE CONVERTED AMOUNT IS: " + str(fff)), font = ("Calibri", 15, "bold"))
+    result = tk.Label(text = (" THE CONVERTED AMOUNT IS: " + str(fff)) + " ", font = ("Calibri", 14, "bold"))
     result.place(x = 200, y = 200, anchor= "center")
 
 tk.Button(app, text= (' ' + 'SEND' + ' '), font = ('Calibri', 12), command= funct).place(x = 937, y = 410, anchor= "center")
 app.bind('<Return>', funct)
-
 
 if __name__ == "__main__":
     app.mainloop()
