@@ -48,8 +48,7 @@ def funct():
     f = aaa[-3:]
     bbb = text.get()
     t = bbb[-3:]
-
-        
+    
     curr_code = f + "_" + t
 
     def clear_text_four(self):
