@@ -1,4 +1,5 @@
 import tkinter as tk
+import requests
 
 OptionList = [
 "Afghanistan: AFN", "Akrotiri and Dhekelia: EUR", "Aland Islands: EUR", "Albania: ALL", "Algeria: DZD", "American Samoa: USD", "Andorra: EUR", "Angola: AOA", "Anguilla: XCD", "Antigua and Barbuda: XCD", "Argentina: ARS", "Armenia: AMD",
@@ -30,7 +31,6 @@ E2 = tk.OptionMenu(app, var, *OptionList)
 E2.config(width=90, font=('Calibri', 12, "bold"))
 E2.place(x = 200, y = 300)
 
-
 E3 = tk.OptionMenu(app, text, *OptionList)
 E3.config(width=90, font=('Calibri', 12, "bold"))
 E3.place(x = 200, y = 350)
@@ -43,74 +43,69 @@ E4.place(x = 200, y = 400)
 def clear_text_two(self):
     E2.delete(0, 'end')
  
-def lab_one(event= None):
-    aaa = var.get()
-    aaa_out = aaa[-3:] 
-    print(aaa_out)
 
 def clear_text_three(self):
     E3.delete(0, 'end')
 
-
-def lab_two(event= None):
+def funct():
+    aaa = var.get()
+    f = aaa[-3:]
     bbb = text.get()
-    bbb_out = bbb[-3:]
-    print(bbb_out)   
+    t = bbb[-3:]
 
-def clear_text_four(self):
-    E4.delete(0, 'end')
+    print(f)
+    print(t)
+        
+    curr_code = f + "_" + t
+    print(curr_code)
 
-def lab_three(event= None):
-    E4G = E4.get()
-    label = E4G.title()
-    clear_text_four(label)
-    print(E4G)
+    def clear_text_four(self):
+        E4.delete(0, 'end')
 
-a = (E4.get())
+    def lab_three():
+        a = E4.get()
+        label = a.title()
+        clear_text_four(label)
+        return a
 
-tk.Button(app, text= (' ' + 'SEND' + ' '), font = ('Calibri', 12), command=lambda:[lab_one(), lab_two(), lab_three()]).place(x = 937, y = 410, anchor= "center")
-app.bind('<Return>', (lab_one, lab_two, lab_three))
-      
+    class curr_main:
+        
+        def __init__(self):
+            self.apikey = "e00d40017f8b8832f6c7" 
+            self.baseurl = "https://free.currconv.com/api/v7/"
+        
+        def countries(self): #to return list of countries
+            req = requests.get(self.baseurl + "countries?apiKey=" + self.apikey)
+            return req.json()
+
+        def currencies(self): #to return currencies
+            req = requests.get(self.baseurl + "currencies?apiKey=" + self.apikey)
+            return req.json()
+
+        def convert(self, curr_code):
+            parameter = {
+            "apiKey":self.apikey,
+            "compact":"ultra",
+            "q": curr_code
+            }
+            req = requests.get(self.baseurl + "convert", params = parameter)
+            if not req.status_code == 200:
+                raise AssertionError
+            if req.json() == {}:
+                print('No data found for the conversion, probably a wrong currency code, :/')
+            return req.json()[curr_code]
+
+
+    curr_instance = curr_main()
+    final_amount =  curr_instance.convert(curr_code)
+    a = E4.get()
+            
+    fff = round(final_amount * float(a), 3)
+    print(fff)
+
+tk.Button(app, text= (' ' + 'SEND' + ' '), font = ('Calibri', 12), command= funct).place(x = 937, y = 410, anchor= "center")
+app.bind('<Return>', funct)
+
 if __name__ == "__main__":
     app.mainloop()
-
-class curr_main:
-
-  def __init__(self):
-    self.apikey = "e00d40017f8b8832f6c7" 
-    self.baseurl = "https://free.currconv.com/api/v7/"
-
-  def countries(self): #to return list of countries
-    req = requests.get(self.baseurl + "countries?apiKey=" + self.apikey)
-    return req.json()
-
-  def currencies(self): #to return currencies
-    req = requests.get(self.baseurl + "currencies?apiKey=" + self.apikey)
-    return req.json()
-
-  def generate_curr_code(self, f, t):
-    curr_code = f + "_" + t 
-    return curr_code
-
-  def convert(self, curr_code):
-    parameter = {
-      "apiKey":self.apikey,
-      "compact":"ultra",
-      "q":curr_code
-    }
-    req = requests.get(self.baseurl + "convert", params = parameter)
-    if not req.status_code == 200:
-      raise AssertionError
-    if req.json() == {}:
-      print('No data found for the conversion, probably a wrong currency code, :/')
-    return req.json()[curr_code]
-
-
-curr_instance = curr_main()
-curr_cod = curr_instance.generate_curr_code(f, t)
-final_amount = curr_instance.convert(curr_cod)
-
-print(round(final_amount * float(a), 3))
-
-
 
