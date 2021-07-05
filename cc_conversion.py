@@ -24,11 +24,11 @@ text = tk.StringVar(app)
 text.set("TO")
 
 E2 = tk.OptionMenu(app, var, *OptionList)
-E2.config(width=90, font=('Calibri', 12, "bold"))
+E2.config(width=90, font=('Calibri', 12, "bold"), relief='raised', bg= 'violet')
 E2.place(x = 200, y = 300)
 
 E3 = tk.OptionMenu(app, text, *OptionList)
-E3.config(width=90, font=('Calibri', 12, "bold"))
+E3.config(width=90, font=('Calibri', 12, "bold"), relief='raised', bg= 'violet')
 E3.place(x = 200, y = 350)
 
 L4 = tk.Label(app, text = "AMOUNT:", bg = "black", fg = "white", font= ('Calibri', 14))
@@ -67,11 +67,11 @@ def funct():
             self.apikey = "e00d40017f8b8832f6c7" 
             self.baseurl = "https://free.currconv.com/api/v7/"
         
-        def countries(self): #to return list of countries
+        def countries(self): 
             req = requests.get(self.baseurl + "countries?apiKey=" + self.apikey)
             return req.json()
 
-        def currencies(self): #to return currencies
+        def currencies(self): 
             req = requests.get(self.baseurl + "currencies?apiKey=" + self.apikey)
             return req.json()
 
@@ -85,7 +85,7 @@ def funct():
             if not req.status_code == 200:
                 raise AssertionError
             if req.json() == {}:
-                print('No data found for the conversion, probably a wrong currency code, :/')
+                print('No data found for the conversion, probably a wrong currency code!')
             return req.json()[curr_code]
 
 
@@ -98,10 +98,9 @@ def funct():
     result = tk.Label(text = (" THE CONVERTED AMOUNT IS: " + str(fff)) + " ", font = ("Calibri", 14, "bold"))
     result.place(x = 200, y = 200, anchor= "center")
 
-tk.Button(app, text= (' ' + 'SEND' + ' '), font = ('Calibri', 12), command= funct).place(x = 937, y = 410, anchor= "center")
+tk.Button(app, text= (' ' + 'SEND' + ' '), font = ('Calibri', 12), relief='raised', bg= "white", command= funct).place(x = 937, y = 410, anchor= "center")
 app.bind('<Return>', funct)
 
 if __name__ == "__main__":
     app.mainloop()
-
 
