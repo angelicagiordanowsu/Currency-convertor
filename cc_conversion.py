@@ -23,10 +23,6 @@ var.set("FROM")
 text = tk.StringVar(app)
 text.set("TO")
 
-#search_tool= tk.Entry(app)
-#search_tool.insert(0, 'search: ')
-#search_tool.pack()
-
 E2 = tk.OptionMenu(app, var, *OptionList)
 E2.config(width=90, font=('Calibri', 12, "bold"))
 E2.place(x = 200, y = 300)
@@ -108,4 +104,5 @@ app.bind('<Return>', funct)
 
 if __name__ == "__main__":
     app.mainloop()
+
 
