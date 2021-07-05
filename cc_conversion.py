@@ -95,7 +95,7 @@ def funct():
             
     fff = round(final_amount * float(a), 3)
     
-    result = tk.Label(text = (" THE CONVERTED AMOUNT IS: " + str(fff)) + " ", font = ("Calibri", 14, "bold"))
+    result = tk.Label(bg= "violet", text = (" The converted amount is " + str(fff)) + " ", font = ("Calibri", 12, "italic"))
     result.place(x = 200, y = 200, anchor= "center")
 
 tk.Button(app, text= (' ' + 'SEND' + ' '), font = ('Calibri', 12), relief='raised', bg= "white", command= funct).place(x = 937, y = 410, anchor= "center")
