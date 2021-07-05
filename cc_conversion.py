@@ -1,5 +1,6 @@
 import tkinter as tk
 import requests
+import keyboard
 
 OptionList = [
 "Afghanistan: AFN", "Akrotiri and Dhekelia: EUR", "Aland Islands: EUR", "Albania: ALL", "Algeria: DZD", "American Samoa: USD", "Andorra: EUR", "Angola: AOA", "Anguilla: XCD", "Antigua and Barbuda: XCD", "Argentina: ARS", "Armenia: AMD",
@@ -97,9 +98,12 @@ def funct():
     
     result = tk.Label(bg= "violet", text = (" The converted amount is " + str(fff)) + " ", font = ("Calibri", 12, "italic"))
     result.place(x = 200, y = 200, anchor= "center")
-
+    
 tk.Button(app, text= (' ' + 'SEND' + ' '), font = ('Calibri', 12), relief='raised', bg= "white", command= funct).place(x = 937, y = 410, anchor= "center")
 app.bind('<Return>', funct)
+
+#if keyboard.is_pressed("enter"):  this gives error
+#    app.bind('<Return>', funct)
 
 if __name__ == "__main__":
     app.mainloop()
