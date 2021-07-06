@@ -106,6 +106,10 @@ E3['values'] = OptionList
 E3.config(width=90, font=('Calibri', 12, "bold"))
 E3.place(x = 200, y = 350)
 
+L4 = tk.Label(app, text = "AMOUNT:", bg = "black", fg = "white", font= ('Calibri', 14))
+L4.place(x = 100, y = 400)
+E4 = tk.Entry(app, bd = 5)
+E4.place(x = 200, y = 400)
 
 #def clear_text_two(self):
 #    E2.delete(0, 'end')
@@ -138,10 +142,7 @@ class curr_main:
         if not req.status_code == 200:
             raise AssertionError
         if req.json() == {}:
-            errorbox = tk.Label(text = 'No data found for the conversion, probably a wrong currency code!', font = ("Calibri", 16, "bold"))
-            errorbox.place(x=300, y=500, anchor = "w")
-            ebox = True
-        if ebox == True & len(curr_code) == 7: errorbox.destroy()
+            pass #No data found for the conversion, probably a wrong currency code!
         return req.json()[curr_code]
 
 
