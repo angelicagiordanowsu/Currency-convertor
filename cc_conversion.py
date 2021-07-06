@@ -80,15 +80,15 @@ OptionList = [
     "Zimbabwe: USD"
 ]
 app = tk.Tk()
-ttk.Style().theme_use('xpnative')
+ttk.Style().theme_use('default')
 app.title('Currency Converter')
 app.geometry('1000x1000')
 app.resizable(True, True)
-app.config(bg = "black")
+app.config(bg="black")
 
-label_one = tk.Label(text = "CURRENCY CONVERTER", bg = "black", fg = "white")
-label_one.config(font = ("Calibri", 15))
-label_one.place(x = 200, y = 250, anchor = "center")
+label_one = tk.Label(text="CURRENCY CONVERTER", bg="black", fg="white")
+label_one.config(font=("Calibri", 15))
+label_one.place(x=200, y=250, anchor="center")
 
 var = tk.StringVar(app)
 var.set("FROM")
@@ -96,34 +96,41 @@ var.set("FROM")
 text = tk.StringVar(app)
 text.set("TO")
 
-E2 = ttk.Combobox(app, textvariable = var)
+style= ttk.Style()
+style.configure("TCombobox", fieldbackground= "#d6c3d3", background= "violet")
+
+E2 = ttk.Combobox(app, textvariable=var)
 E2['values'] = OptionList
 E2.config(width=90, font=('Calibri', 12, "bold"))
-E2.place(x = 200, y = 300)
+E2.place(x=200, y=300)
 
-E3 = ttk.Combobox(app, textvariable = text)
+E3 = ttk.Combobox(app, textvariable=text) 
 E3['values'] = OptionList
 E3.config(width=90, font=('Calibri', 12, "bold"))
-E3.place(x = 200, y = 350)
+E3.place(x=200, y=350)
 
-L4 = tk.Label(app, text = "AMOUNT:", bg = "black", fg = "white", font= ('Calibri', 14))
-L4.place(x = 100, y = 400)
-E4 = tk.Entry(app, bd = 5)
-E4.place(x = 200, y = 400)
+L4 = tk.Label(app,
+              text="AMOUNT:",
+              bg="black",
+              fg="white",
+              font=('Calibri', 14))
+L4.place(x=100, y=400)
+E4 = tk.Entry(app, bd=5)
+E4.place(x=200, y=400)
 
 #def clear_text_two(self):
 #    E2.delete(0, 'end')
-clear_text_two = lambda self : E2.delete(0, 'end')
-clear_text_three = lambda self : E3.delete(0, 'end')
- 
+clear_text_two = lambda self: E2.delete(0, 'end')
+clear_text_three = lambda self: E3.delete(0, 'end')
+
+
 #def clear_text_three(self):
- #   E3.delete(0, 'end')
+#   E3.delete(0, 'end')
 class curr_main:
-    
     def __init__(self):
-        self.apikey = "e00d40017f8b8832f6c7" 
+        self.apikey = "e00d40017f8b8832f6c7"
         self.baseurl = "https://free.currconv.com/api/v7/"
-    
+
     def countries(self):
         req = requests.get(self.baseurl + "countries?apiKey=" + self.apikey)
         return req.json()
@@ -133,47 +140,51 @@ class curr_main:
         return req.json()
 
     def convert(self, curr_code):
-        parameter = {
-        "apiKey":self.apikey,
-        "compact":"ultra",
-        "q": curr_code
-        }
-        req = requests.get(self.baseurl + "convert", params = parameter)
+        parameter = {"apiKey": self.apikey, "compact": "ultra", "q": curr_code}
+        req = requests.get(self.baseurl + "convert", params=parameter)
         if not req.status_code == 200:
             raise AssertionError
         if req.json() == {}:
-            pass #No data found for the conversion, probably a wrong currency code!
+            pass  #No data found for the conversion, probably a wrong currency code!
         return req.json()[curr_code]
 
 
-def funct():
+def funct(arg = None):
     aaa = var.get()
     f = aaa[-3:]
     bbb = text.get()
-    t = bbb[-3:]   
+    t = bbb[-3:]
     curr_code = f + "_" + t
-#    def clear_text_four(self):
-#        E4.delete(0, 'end')
-    clear_text_four = lambda self : E4.delete(0, 'end')
+    #    def clear_text_four(self):
+    #        E4.delete(0, 'end')
+    clear_text_four = lambda self: E4.delete(0, 'end')
 
     def lab_three():
         a = E4.get()
         label = a.title()
         clear_text_four(label)
         return a
+
     curr_instance = curr_main()
     final_amount = curr_instance.convert(curr_code)
     a = E4.get()
 
     fff = round(final_amount * float(a), 3)
-    result = tk.Label(bg= "violet", text = (" The converted amount is " + str(fff)) + " ", font = ("Calibri", 12, "italic"))
-    result.place(x = 200, y = 200, anchor= "center")
+    result = tk.Label(bg="violet",
+                      text=(" The converted amount is " + str(fff)) + " ",
+                      font=("Calibri", 12, "italic"))
+    result.place(x=200, y=200, anchor="center")
 
-tk.Button(app, text= (' ' + 'SEND' + ' '), font = ('Calibri', 12), relief='raised', bg= "white", command = funct).place(x = 937, y = 410, anchor= "center")
+
+tk.Button(app,
+          text=(' ' + 'SEND' + ' '),
+          font=('Calibri', 12),
+          relief='raised',
+          bg="white",
+          command=funct).place(x=937, y=410, anchor="center")
 app.bind('<Return>', funct)
 
-#if keyboard.is_pressed("enter"):  this gives error
-#    app.bind('<Return>', funct)
 
 if __name__ == "__main__":
     app.mainloop()
+
