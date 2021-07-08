@@ -1,7 +1,78 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter.constants import ANCHOR, END
 import requests
-import keyboard
+
+app = tk.Tk()
+app.title('Currency Converter')
+app.geometry('1000x1000')
+app.resizable(True, True)
+app.config(bg="black")
+
+var = tk.StringVar(app)
+var.set("FROM")
+
+text = tk.StringVar(app)
+text.set("TO")
+
+
+def update(data):
+    my_list.delete(0, END)
+    for item in data:
+        my_list.insert(END, item)
+
+
+def fillout(e):
+    my_entry1.delete(0, END)
+    my_entry1.insert(0, my_list.get(ANCHOR))
+
+
+def empty(e):
+    my_entry2.delete(0, END)
+    my_entry2.insert(0, my_list.get(ANCHOR))
+
+
+def check(e):
+    typed = my_entry1.get()
+
+    if typed == "":
+        data = OptionList
+
+    else:
+        data = []
+        for item in OptionList:
+            if typed.lower() in item.lower():
+                data.append(item)
+
+    update(data)
+
+
+def check_2(e):
+    typed = my_entry2.get()
+
+    if typed == "":
+        data = OptionList
+
+    else:
+        data = []
+        for item in OptionList:
+            if typed.lower() in item.lower():
+                data.append(item)
+
+    update(data)
+
+
+label_one = tk.Label(text="CURRENCY CONVERTER", bg="black", fg="white")
+label_one.config(font=("Calibri", 15))
+label_one.place(x=200, y=250, anchor="center")
+
+my_entry1 = tk.Entry(app, text=var, font=('Calibri', 12, "bold"))
+my_entry1.place(x=200, y=300)
+
+my_entry2 = tk.Entry(app, text=text, font=('Calibri', 12, "bold"))
+my_entry2.place(x=200, y=350)
+
+my_list = tk.Listbox(app, width=70, bg="violet")
+my_list.place(x=400, y=255)
 
 OptionList = [
     "Afghanistan: AFN", "Akrotiri and Dhekelia: EUR", "Aland Islands: EUR",
@@ -79,35 +150,13 @@ OptionList = [
     "Wake Island: USD", "Wallis and Futuna: XPF", "Yemen: YER", "Zambia: ZMW",
     "Zimbabwe: USD"
 ]
-app = tk.Tk()
-ttk.Style().theme_use('default')
-app.title('Currency Converter')
-app.geometry('1000x1000')
-app.resizable(True, True)
-app.config(bg="black")
 
-label_one = tk.Label(text="CURRENCY CONVERTER", bg="black", fg="white")
-label_one.config(font=("Calibri", 15))
-label_one.place(x=200, y=250, anchor="center")
+update(OptionList)
 
-var = tk.StringVar(app)
-var.set("FROM")
-
-text = tk.StringVar(app)
-text.set("TO")
-
-style= ttk.Style()
-style.configure("TCombobox", fieldbackground= "#d6c3d3", background= "violet")
-
-E2 = ttk.Combobox(app, textvariable=var)
-E2['values'] = OptionList
-E2.config(width=90, font=('Calibri', 12, "bold"))
-E2.place(x=200, y=300)
-
-E3 = ttk.Combobox(app, textvariable=text) 
-E3['values'] = OptionList
-E3.config(width=90, font=('Calibri', 12, "bold"))
-E3.place(x=200, y=350)
+my_list.bind("<<ListboxSelect>>", fillout)
+my_list.bind("<<ListboxSelect>>", empty)
+my_entry1.bind("<KeyRelease>", check)
+my_entry2.bind("<KeyRelease>", check_2)
 
 L4 = tk.Label(app,
               text="AMOUNT:",
@@ -115,17 +164,14 @@ L4 = tk.Label(app,
               fg="white",
               font=('Calibri', 14))
 L4.place(x=100, y=400)
+
 E4 = tk.Entry(app, bd=5)
 E4.place(x=200, y=400)
 
-#def clear_text_two(self):
-#    E2.delete(0, 'end')
-clear_text_two = lambda self: E2.delete(0, 'end')
-clear_text_three = lambda self: E3.delete(0, 'end')
+clear_text_two = lambda self: my_entry1.delete(0, 'end')
+clear_text_three = lambda self: my_entry2.delete(0, 'end')
 
 
-#def clear_text_three(self):
-#   E3.delete(0, 'end')
 class curr_main:
     def __init__(self):
         self.apikey = "e00d40017f8b8832f6c7"
@@ -145,18 +191,16 @@ class curr_main:
         if not req.status_code == 200:
             raise AssertionError
         if req.json() == {}:
-            pass  #No data found for the conversion, probably a wrong currency code!
+            pass
         return req.json()[curr_code]
 
 
-def funct(arg = None):
+def funct(arg=None):
     aaa = var.get()
     f = aaa[-3:]
     bbb = text.get()
     t = bbb[-3:]
-    curr_code = f + "_" + t
-    #    def clear_text_four(self):
-    #        E4.delete(0, 'end')
+    curr_code = f.upper() + "_" + t.upper()
     clear_text_four = lambda self: E4.delete(0, 'end')
 
     def lab_three():
@@ -184,7 +228,5 @@ tk.Button(app,
           command=funct).place(x=937, y=410, anchor="center")
 app.bind('<Return>', funct)
 
-
 if __name__ == "__main__":
     app.mainloop()
-
