@@ -17,18 +17,18 @@ text.set("TO")
 
 def update(data):
     my_list.delete(0, END)
+    my_list2.delete(0, END)
     for item in data:
         my_list.insert(END, item)
-
+        my_list2.insert(END, item)
 
 def fillout(e):
     my_entry1.delete(0, END)
     my_entry1.insert(0, my_list.get(ANCHOR))
 
-
 def empty(e):
     my_entry2.delete(0, END)
-    my_entry2.insert(0, my_list.get(ANCHOR))
+    my_entry2.insert(0, my_list2.get(ANCHOR))
 
 
 def check(e):
@@ -65,14 +65,17 @@ label_one = tk.Label(text="CURRENCY CONVERTER", bg="black", fg="white")
 label_one.config(font=("Calibri", 15))
 label_one.place(x=200, y=250, anchor="center")
 
-my_entry1 = tk.Entry(app, text=var, font=('Calibri', 12, "bold"))
+my_entry1 = tk.Entry(app, text=var, bg = "violet", font=('Calibri', 12, "bold"))
 my_entry1.place(x=200, y=300)
 
-my_entry2 = tk.Entry(app, text=text, font=('Calibri', 12, "bold"))
+my_entry2 = tk.Entry(app, text=text, bg = "lime", font=('Calibri', 12, "bold"))
 my_entry2.place(x=200, y=350)
 
-my_list = tk.Listbox(app, width= 60, font= ("Calibri", 11), bg="violet")
+my_list = tk.Listbox(app, width= 40, font= ("Calibri", 11), bg="violet")
 my_list.place(x=400, y=255)
+
+my_list2 = tk.Listbox(app, width= 40, font= ("Calibri", 11), bg="lime")
+my_list2.place(x=650, y=255)
 
 OptionList = [
     "Afghanistan: AFN", "Akrotiri and Dhekelia: EUR", "Aland Islands: EUR",
@@ -153,8 +156,8 @@ OptionList = [
 
 update(OptionList)
 
-my_list.bind("<<ListboxSelect>>", fillout, add= "+") 
-my_list.bind("<<ListboxSelect>>", empty, add= "+")
+my_list.bind("<<ListboxSelect>>", fillout, add = "+")
+my_list2.bind("<<ListboxSelect>>", empty, add = "+")
 my_entry1.bind("<KeyRelease>", check)
 my_entry2.bind("<KeyRelease>", check_2)
 
@@ -225,7 +228,7 @@ tk.Button(app,
           font=('Calibri', 12),
           relief='raised',
           bg="white",
-          command=funct).place(x=900, y=410, anchor="center")
+          command=funct).place(x=910, y=490, anchor="center")
 app.bind('<Return>', funct)
 
 if __name__ == "__main__":
