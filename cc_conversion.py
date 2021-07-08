@@ -217,7 +217,7 @@ def funct(arg=None):
     a = E4.get()
 
     fff = round(final_amount * float(a), 3)
-    result = tk.Label(bg="violet",
+    result = tk.Label(bg="white",
                       text=(" The converted amount is " + str(fff)) + " ",
                       font=("Calibri", 12, "italic"))
     result.place(x=200, y=200, anchor="center")
