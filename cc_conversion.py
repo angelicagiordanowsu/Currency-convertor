@@ -5,7 +5,7 @@ import requests
 app = tk.Tk()
 app.title('Currency Converter')
 app.geometry('1000x1000')
-app.resizable(True, True)
+app.resizable(False, False)
 app.config(bg="black")
 
 var = tk.StringVar(app)
@@ -225,7 +225,7 @@ tk.Button(app,
           font=('Calibri', 12),
           relief='raised',
           bg="white",
-          command=funct).place(x=937, y=410, anchor="center")
+          command=funct).place(x=900, y=410, anchor="center")
 app.bind('<Return>', funct)
 
 if __name__ == "__main__":
