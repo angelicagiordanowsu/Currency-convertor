@@ -22,11 +22,11 @@ def update(data):
         my_list.insert(END, item)
         my_list2.insert(END, item)
 
-def fillout(e):
+def fillout(e, arg= None):
     my_entry1.delete(0, END)
     my_entry1.insert(0, my_list.get(ANCHOR))
 
-def empty(e):
+def empty(e, arg= None):
     my_entry2.delete(0, END)
     my_entry2.insert(0, my_list2.get(ANCHOR))
 
