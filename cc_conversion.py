@@ -71,7 +71,7 @@ my_entry1.place(x=200, y=300)
 my_entry2 = tk.Entry(app, text=text, font=('Calibri', 12, "bold"))
 my_entry2.place(x=200, y=350)
 
-my_list = tk.Listbox(app, width=70, bg="violet")
+my_list = tk.Listbox(app, width= 60, font= ("Calibri", 11), bg="violet")
 my_list.place(x=400, y=255)
 
 OptionList = [
@@ -153,8 +153,8 @@ OptionList = [
 
 update(OptionList)
 
-my_list.bind("<<ListboxSelect>>", fillout)
-my_list.bind("<<ListboxSelect>>", empty)
+my_list.bind("<<ListboxSelect>>", fillout, add= "+") 
+my_list.bind("<<ListboxSelect>>", empty, add= "+")
 my_entry1.bind("<KeyRelease>", check)
 my_entry2.bind("<KeyRelease>", check_2)
 
